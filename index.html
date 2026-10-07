@@ -1,0 +1,780 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#b3123d">
+<title>Para Sarah ❤️</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: radial-gradient(circle at top, #ff6689 0%, #d4144f 35%, #780b2d 100%);
+  color: white;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 35px 22px;
+  animation: aparecer .5s ease;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.heart {
+  font-size: clamp(65px, 20vw, 105px);
+  margin-bottom: 18px;
+  animation: pulsar 1.3s infinite ease-in-out;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,.25));
+}
+
+h1 {
+  font-size: clamp(28px, 8vw, 42px);
+  line-height: 1.15;
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(22px, 6vw, 31px);
+  line-height: 1.2;
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+p {
+  width: 100%;
+  max-width: 430px;
+  font-size: clamp(16px, 4.5vw, 19px);
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.destaque {
+  font-weight: 800;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+button {
+  min-width: 125px;
+  min-height: 50px;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 999px;
+  background: white;
+  color: #c31348;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+button:active {
+  transform: scale(.94);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+#nao {
+  position: relative;
+}
+
+.food-options {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.food {
+  min-width: 0;
+  min-height: 110px;
+  padding: 12px 5px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.16);
+  border: 2px solid transparent;
+  color: white;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+}
+
+.food span {
+  font-size: 42px;
+}
+
+.food.selecionado {
+  background: white;
+  color: #c31348;
+  border-color: white;
+  transform: scale(1.04);
+}
+
+.continuar {
+  margin-top: 18px;
+}
+
+.formulario {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.campo {
+  width: 100%;
+  text-align: left;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+input {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 15px;
+  padding: 0 15px;
+  background: white;
+  color: #333;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  box-shadow: 0 0 0 3px rgba(255,255,255,.35);
+}
+
+.resumo {
+  width: 100%;
+  max-width: 390px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 22px;
+  padding: 20px;
+  margin: 10px 0 15px;
+  backdrop-filter: blur(10px);
+}
+
+.resumo p {
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.resumo strong {
+  color: white;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+  min-width: 220px;
+}
+
+.floating-heart {
+  position: fixed;
+  bottom: -50px;
+  pointer-events: none;
+  z-index: 20;
+  animation: subir linear forwards;
+}
+
+@keyframes pulsar {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.13);
+  }
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-height:650px) {
+
+  .screen {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .heart {
+    font-size: 60px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 27px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .food {
+    min-height: 90px;
+  }
+
+  .food span {
+    font-size: 34px;
+  }
+
+  button {
+    min-height: 46px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- TELA 1 -->
+  <section class="screen" id="tela1">
+
+    <div class="heart">❤️</div>
+
+    <h1>Sarah...</h1>
+
+    <p>
+      Eu preparei uma coisa especial para você.
+    </p>
+
+    <p>
+      Mas antes preciso fazer uma pergunta...
+    </p>
+
+    <button onclick="abrirConvite()">
+      Pode perguntar ❤️
+    </button>
+
+  </section>
+
+
+  <!-- TELA 2 -->
+  <section class="screen hidden" id="tela2">
+
+    <div class="heart">🥰</div>
+
+    <h2>Sarah, você aceita?</h2>
+
+    <p>
+      Eu gostaria muito de passar um momento especial ao seu lado.
+    </p>
+
+    <p class="destaque">
+      Você aceita sair comigo? ❤️
+    </p>
+
+    <div class="buttons">
+
+      <button onclick="sim()">
+        SIM ❤️
+      </button>
+
+      <button id="nao" onclick="fugir()">
+        NÃO 😢
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- TELA 3 -->
+  <section class="screen hidden" id="tela3">
+
+    <div class="heart">🍽️</div>
+
+    <h2>Qual comida você prefere?</h2>
+
+    <p>
+      Você escolhe o lugar. ❤️
+    </p>
+
+    <div class="food-options">
+
+      <button
+        class="food"
+        onclick="escolherComida('Pizza', this)"
+      >
+        <span>🍕</span>
+        Pizza
+      </button>
+
+      <button
+        class="food"
+        onclick="escolherComida('Sanduíche', this)"
+      >
+        <span>🥪</span>
+        Sanduíche
+      </button>
+
+      <button
+        class="food"
+        onclick="escolherComida('Churrasco', this)"
+      >
+        <span>🥩</span>
+        Churrasco
+      </button>
+
+    </div>
+
+    <button
+      class="continuar"
+      onclick="irParaData()"
+    >
+      Continuar ❤️
+    </button>
+
+  </section>
+
+
+  <!-- TELA 4 -->
+  <section class="screen hidden" id="tela4">
+
+    <div class="heart">📅</div>
+
+    <h2>Quando você estará livre?</h2>
+
+    <p>
+      Escolha o melhor dia e horário para nosso encontro. ❤️
+    </p>
+
+    <div class="formulario">
+
+      <div class="campo">
+
+        <label for="data">
+          📅 Data
+        </label>
+
+        <input
+          type="date"
+          id="data"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="hora">
+          🕐 Horário
+        </label>
+
+        <input
+          type="time"
+          id="hora"
+        >
+
+      </div>
+
+    </div>
+
+    <button
+      class="continuar"
+      onclick="confirmar()"
+    >
+      Confirmar ❤️
+    </button>
+
+  </section>
+
+
+  <!-- TELA 5 -->
+  <section class="screen hidden" id="tela5">
+
+    <div class="heart">💖</div>
+
+    <h1>Combinado! 🥰</h1>
+
+    <p>
+      Sarah, nosso encontro está ficando marcado!
+    </p>
+
+    <div class="resumo">
+
+      <p>
+        🍽️ <strong>Comida:</strong>
+        <span id="resumoComida"></span>
+      </p>
+
+      <p>
+        📅 <strong>Data:</strong>
+        <span id="resumoData"></span>
+      </p>
+
+      <p>
+        🕐 <strong>Horário:</strong>
+        <span id="resumoHora"></span>
+      </p>
+
+    </div>
+
+    <p>
+      Agora é só me avisar. ❤️
+    </p>
+
+    <button
+      class="whatsapp"
+      onclick="enviarWhatsApp()"
+    >
+      💚 Enviar minhas escolhas
+    </button>
+
+  </section>
+
+</div>
+
+
+<script>
+
+let comidaEscolhida = "";
+
+
+// TROCAR TELA
+function trocarTela(atual, proxima) {
+
+  document
+    .getElementById(atual)
+    .classList.add("hidden");
+
+  document
+    .getElementById(proxima)
+    .classList.remove("hidden");
+}
+
+
+// PRIMEIRA TELA
+function abrirConvite() {
+
+  trocarTela("tela1", "tela2");
+
+  coracoes();
+}
+
+
+// SIM
+function sim() {
+
+  trocarTela("tela2", "tela3");
+
+  coracoes();
+
+  setTimeout(coracoes, 700);
+}
+
+
+// BOTÃO NÃO FOGE
+function fugir() {
+
+  const botao = document.getElementById("nao");
+
+  const x = Math.random() * 180 - 90;
+
+  const y = Math.random() * 180 - 90;
+
+  botao.style.transform =
+    `translate(${x}px, ${y}px)`;
+}
+
+
+// ESCOLHER COMIDA
+function escolherComida(comida, botao) {
+
+  comidaEscolhida = comida;
+
+  const botoes =
+    document.querySelectorAll(".food");
+
+  botoes.forEach(item => {
+
+    item.classList.remove("selecionado");
+
+  });
+
+  botao.classList.add("selecionado");
+
+  coracoes();
+}
+
+
+// IR PARA DATA
+function irParaData() {
+
+  if (!comidaEscolhida) {
+
+    alert("Escolha uma comida primeiro ❤️");
+
+    return;
+  }
+
+  trocarTela("tela3", "tela4");
+}
+
+
+// CONFIRMAR
+function confirmar() {
+
+  const data =
+    document.getElementById("data").value;
+
+  const hora =
+    document.getElementById("hora").value;
+
+
+  if (!data) {
+
+    alert("Escolha uma data ❤️");
+
+    return;
+  }
+
+
+  if (!hora) {
+
+    alert("Escolha um horário ❤️");
+
+    return;
+  }
+
+
+  const dataObj =
+    new Date(data + "T00:00:00");
+
+
+  const dataFormatada =
+    dataObj.toLocaleDateString(
+      "pt-BR",
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      }
+    );
+
+
+  document.getElementById(
+    "resumoComida"
+  ).textContent = comidaEscolhida;
+
+
+  document.getElementById(
+    "resumoData"
+  ).textContent = dataFormatada;
+
+
+  document.getElementById(
+    "resumoHora"
+  ).textContent = hora;
+
+
+  trocarTela("tela4", "tela5");
+
+
+  coracoes();
+
+  setTimeout(coracoes, 700);
+  setTimeout(coracoes, 1400);
+  setTimeout(coracoes, 2100);
+}
+
+
+// ENVIAR PARA WHATSAPP
+function enviarWhatsApp() {
+
+  const comida =
+    document.getElementById(
+      "resumoComida"
+    ).textContent;
+
+  const data =
+    document.getElementById(
+      "resumoData"
+    ).textContent;
+
+  const hora =
+    document.getElementById(
+      "resumoHora"
+    ).textContent;
+
+
+  const mensagem =
+`💖 Sarah respondeu ao convite!
+
+🥰 Ela aceitou sair comigo!
+
+🍽️ Comida escolhida: ${comida}
+
+📅 Data escolhida: ${data}
+
+🕐 Horário escolhido: ${hora}
+
+❤️ Agora é só marcar nosso encontro!`;
+
+
+  const numero =
+    "5562991106334";
+
+
+  const url =
+    "https://wa.me/" +
+    numero +
+    "?text=" +
+    encodeURIComponent(mensagem);
+
+
+  window.location.href = url;
+}
+
+
+// CORAÇÕES
+function coracoes() {
+
+  const emojis = [
+    "❤️",
+    "💖",
+    "💕",
+    "💗",
+    "💓",
+    "💘"
+  ];
+
+
+  for (let i = 0; i < 18; i++) {
+
+    const heart =
+      document.createElement("div");
+
+    heart.className =
+      "floating-heart";
+
+    heart.innerHTML =
+      emojis[
+        Math.floor(
+          Math.random() * emojis.length
+        )
+      ];
+
+
+    heart.style.left =
+      Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize =
+      (18 + Math.random() * 25) + "px";
+
+
+    heart.style.animationDuration =
+      (3 + Math.random() * 3) + "s";
+
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
+      heart.remove();
+
+    }, 6500);
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
+```
+
+Agora, quando ela terminar, o botão verde abre o WhatsApp **já com todas as escolhas preenchidas** para o número configurado. 💚❤️
+
+Se você colocar esse `index.html` no GitHub Pages, ela poderá abrir o convite pelo celular e responder normalmente.
